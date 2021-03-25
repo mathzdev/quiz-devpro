@@ -25,7 +25,7 @@ SECRET_KEY = 'z_ss651(69dof08*+3#x3mxsm&z2z+ew2fz9csghd+)5y$es5f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['quizdevpro.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
