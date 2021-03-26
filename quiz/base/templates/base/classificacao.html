@@ -18,7 +18,7 @@
         <div id="loader"></div>
 
         <div id="game" class="justify-center flex-column animate-bottom hidden">
-
+            {%if length_alunos > 0 %}
             <div class="game-result">
                 <h2>Você fez {{pontuacao_do_aluno}} pontos e está no</h2>
                 <h2 class="status-player">{{posicao_do_aluno}}º</h2>
@@ -27,13 +27,26 @@
 
             <br/>
 
+
             <h3>Ranking</h3>
+
             {% for aluno in primeros_alunos_da_classificacao %}
             <div class="choice-container">
                 <p class="choice-prefix">{{ forloop.counter }}º</p>
                 <p class="choice-text"><b>{{ aluno.aluno__nome }}</b> - com {{aluno.pontos__sum}} pontos</p>
             </div>
             {% endfor %}
+            {% else %}
+            <div class="game-result">
+                <h2>Ninguém respondeu nenhuma pergunta ainda!</h2>
+                <br />
+                <center>
+                    <a href="/perguntas/1">
+                        <h3>Vá para a primeira pergunta</h3>
+                    </a>
+                </center>
+            </div>
+            {% endif %}
         </div>
 
     </div>
