@@ -46,6 +46,11 @@ def perguntas(requisicao, indice):
         except IndexError:
             return redirect('/classificacao')
         else:
+            tem_respostas = Resposta.objects.filter(aluno_id=aluno_id, pergunta_id=indice)
+
+            if len(tem_respostas) > 0:
+                return redirect(f'/perguntas/{indice + 1}')
+
             contexto = {'indice_da_questao': indice, 'pergunta': pergunta}
 
             if requisicao.method == 'POST':
@@ -68,13 +73,14 @@ def perguntas(requisicao, indice):
             return render(requisicao, 'base/perguntas.html', context=contexto)
 
 
+
+
 def classificacao(requisicao):
     try:
         aluno_id = requisicao.session['aluno_id']
     except KeyError:
         return redirect('/')
     else:
-
         pontos_dct = Resposta.objects.filter(aluno_id=aluno_id).aggregate(Sum('pontos'))
         pontuacao_do_aluno = pontos_dct['pontos__sum']
 
